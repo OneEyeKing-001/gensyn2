@@ -1,6 +1,27 @@
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y python3 python3-venv python3-pip curl wget screen git lsof tmux unzip
 
+sudo apt install ufw -y
+sudo ufw allow 22
+sudo ufw enable 
+
+
+sudo fallocate -l 8G /swapfile
+
+sudo chmod 600 /swapfile
+
+sudo mkswap /swapfile
+
+sudo swapon /swapfile
+
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+free -h
+
+
+echo 'root:123Abc123!' | chpasswd
+usermod -aG google-sudoers root
+
 
 # Install Node.js 20.x
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
